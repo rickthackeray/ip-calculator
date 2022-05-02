@@ -51,28 +51,20 @@ def cidrmask_to_formatted_binary(mask: int):
     result = format_binary_ip(result)
     return result
 
-
-def network_address_in_binary(ip: str, mask: str):
+def network_address(ip: str, mask: str, dec_or_bin = 0):
     ip = ip_to_binary(ip)
     ip = int(ip,2)
     mask = number_to_subnet_mask(mask)
     mask = int(mask,2)
     result = ip & mask
     result = int_to_binary(result)
-    result = format_binary_ip(result)
+    if (dec_or_bin == 0):
+        result = binary_to_ip(result)
+    else:
+        result = format_binary_ip(result)
     return result
 
-def network_address_in_decimal(ip: str, mask: str):
-    ip = ip_to_binary(ip)
-    ip = int(ip,2)
-    mask = number_to_subnet_mask(mask)
-    mask = int(mask,2)
-    result = ip & mask
-    result = int_to_binary(result)
-    result = binary_to_ip(result)
-    return result
-
-def broadcast_address_in_binary(ip: str, mask: str):
+def broadcast_address(ip: str, mask: str, dec_or_bin = 0):
     wildcard = mask_to_wildcard(mask)
     wildcard = binary_to_int(wildcard)
     ip = ip_to_binary(ip)
@@ -81,8 +73,11 @@ def broadcast_address_in_binary(ip: str, mask: str):
     mask = int(mask,2)
     network = ip & mask
     result = network | wildcard
-    print(type(int_to_binary(result)))
-    result = format_binary_ip(result)
+    result = int_to_binary(result)
+    if (dec_or_bin == 0):
+        result = binary_to_ip(result)
+    else:
+        result = format_binary_ip(result)
     return result
 
 
@@ -91,8 +86,8 @@ if __name__ == '__main__':
     mask = "24"
     a = ip_to_formatted_binary(ip)
     b = cidrmask_to_formatted_binary(mask)
-    c = network_address_in_binary(ip, mask)
-    d = network_address_in_decimal(ip, mask)
+    c = network_address(ip, mask, 0)
+    d = network_address(ip, mask, 1)
+    e = broadcast_address(ip,mask, 0)
+    f = broadcast_address(ip,mask, 1)
 
-
-print(broadcast_address_in_binary(ip,mask))
