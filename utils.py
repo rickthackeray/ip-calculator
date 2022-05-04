@@ -38,9 +38,7 @@ def mask_to_wildcard(num: str):
     return result
 
 
-
-# below are meant to be called by API
-
+# Putting it together
 def ip_to_formatted_binary(ip: str):
     result = ip_to_binary(ip)
     result = format_binary_ip(result)
@@ -81,6 +79,20 @@ def broadcast_address(ip: str, mask: str, dec_or_bin = 0):
     return result
 
 
+# All in one
+def ip_calc(ip: str, mask: str):
+    results = {
+        "cidr_ip": f"{ip}/{mask}",
+        "bin_ip": ip_to_formatted_binary(ip),
+        "bin_mask": cidrmask_to_formatted_binary(mask),
+        "dec_network": network_address(ip, mask, 0),
+        "bin_network": network_address(ip, mask, 1),
+        "dec_broadcast": broadcast_address(ip, mask, 0),
+        "bin_broadcast": broadcast_address(ip, mask, 1)
+    }
+    return results
+
+
 if __name__ == '__main__':
     ip = "192.168.0.1"
     mask = "24"
@@ -90,4 +102,5 @@ if __name__ == '__main__':
     d = network_address(ip, mask, 1)
     e = broadcast_address(ip,mask, 0)
     f = broadcast_address(ip,mask, 1)
+    z = ip_calc(ip,mask)
 
