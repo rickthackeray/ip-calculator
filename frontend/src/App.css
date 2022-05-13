@@ -1,0 +1,69 @@
+:root {
+    --font-size: calc(10px + 1vmin);
+}
+
+.App {
+    text-align: center;
+    background-color: #1A1E3D;
+}
+
+.App-header {
+    min-height: 20vmin;
+}
+
+.App-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--font-size);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+.input-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.btn {
+    font-size: 1em;
+
+    margin: 4px;
+    padding: 8px;
+
+    overflow: hidden;
+
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+
+    background-color: #58511E;
+    color: #ecf0f1;
+
+    transition: background-color .3s;
+}
+
+#ip-input {
+    width: 16ch;
+    margin: 4px;
+    border-width: 0;
+    font-size: var(--font-size);
+    text-align: center;
+}
+
+#mask-input {
+    width: 4ch;
+    margin: 4px;
+    border-width: 0;
+    font-size: var(--font-size);
+    text-align: center;
+  }
+
+.Output {
+    display: grid;
+    grid-template-columns: auto auto;
+}
